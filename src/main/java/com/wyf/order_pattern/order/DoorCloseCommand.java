@@ -1,10 +1,8 @@
 package com.wyf.order_pattern.order;
 
 import com.wyf.order_pattern.entity.Door;
-import com.wyf.order_pattern.order.ICommand;
-import org.omg.CORBA.PRIVATE_MEMBER;
 
-public class DoorOpenCommand implements ICommand {
+public class DoorCloseCommand implements ICommand {
 
     private Door door;
 
@@ -12,12 +10,11 @@ public class DoorOpenCommand implements ICommand {
         this.door = door;
     }
 
-
     public void execute() {
-        door.openDoor();
+        door.closeDoor();
     }
 
     public void undo() {
-        door.closeDoor();
+        door.openDoor();
     }
 }
