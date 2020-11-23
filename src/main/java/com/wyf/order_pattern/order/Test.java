@@ -28,6 +28,7 @@ public class Test {
 
     }
 
+    //执行命令
     public static void handleCommand(boolean isChecked,ICommand openCommand,ICommand closeCommand){
         if(isChecked){
             commands.push(openCommand);
@@ -36,5 +37,11 @@ public class Test {
             commands.push(closeCommand);
             closeCommand.execute();
         }
+    }
+
+    //撤销上一步
+    public static void revert(){
+        ICommand command = commands.pop();
+        command.undo();
     }
 }
