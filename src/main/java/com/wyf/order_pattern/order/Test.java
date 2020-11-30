@@ -42,6 +42,6 @@ public class Test {
     //撤销上一步
     public static void revert(){
         ICommand command = commands.pop();
-        command.undo(); 
+        command.undo();
     }
 }
