@@ -10,9 +10,10 @@ import com.wyf.abstractFactory.application.desingn.workshop.impl.IIRCacheAdapter
 import com.wyf.abstractFactory.application.redis.RedisUtils;
 
 import javax.security.auth.callback.CallbackHandler;
+import java.lang.reflect.InvocationTargetException;
 
 public class Test {
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 
         CacheService proxy_EGM = JDKProxyFactory.getProxy(CacheService.class, EGMCacheAdapter.class);
 

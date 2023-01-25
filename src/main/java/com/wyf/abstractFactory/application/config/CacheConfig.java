@@ -10,15 +10,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.validation.Valid;
+import java.lang.reflect.InvocationTargetException;
 
 @Configuration
 public class CacheConfig {
 
-    @Value("${cache.type:egm}")
+    @Value("${cache.type:single}")
     private String cacheType;
 
     @Bean
-    public CacheService cacheService() throws InstantiationException, IllegalAccessException {
+    public CacheService cacheService() throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 
         Class adapterClazz = EGMCacheAdapter.class;
 
@@ -29,6 +30,8 @@ public class CacheConfig {
             case "iir":
                 adapterClazz = IIRCacheAdapter.class;
                 break;
+            case "single":
+                return new CacheServiceImpl();
         }
 
         return (CacheService) JDKProxyFactory.getProxy(CacheService.class,adapterClazz);
